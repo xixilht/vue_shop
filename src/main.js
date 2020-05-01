@@ -11,6 +11,15 @@ import './assets/css/global.css'
 import axios from 'axios'
 // 配置请求根路径/接口基准路径（在API接口文档中）
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// 这个 request 是个请求拦截器，通过 use 函数挂载一个回调函数
+axios.interceptors.request.use(config => {
+  console.log('use:', config)
+  console.log('token:', window.sessionStorage.getItem('token'))
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  console.log('Authorization:', config.headers.Authorization)
+  // 最后必须 return config
+  return config
+})
 // 把 axios 包挂载到 Vue 的原型对象上
 Vue.prototype.$http = axios
 

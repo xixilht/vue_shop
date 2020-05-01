@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     // data双向数据绑定
     return {
       // 这是登录表单的数据绑定对象
@@ -59,12 +59,12 @@ export default {
   },
   methods: {
     // 点击重置按钮，重置登录表单
-    resetLoginForm () {
+    resetLoginForm() {
       // console.log('这个this指向当前登录页面的实例对象：this')
       // console.log(this)
       this.$refs.loginFormRef.resetFields()
     },
-    login () {
+    login() {
       // 因为 validate 翻译：验证，接收一个回调函数，拿到验证的结果，因此传入一个匿名箭头函数
       // 第一个形参是一个布尔值 boolean，验证的结果，一般名字叫做 valid 翻译：有效的，
       // （PS：在ES6箭头函数中，只有一个形参，可以省略小括号，函数内容只有一行，则可以省略大括号）
@@ -80,7 +80,7 @@ export default {
         // 将登录成功后的 token 保存到客户端 sessionStorage 中
         // （项目中出了登录之外的其他API接口，必须在登录之后才能访问）
         // token 只因在当前网站打开期间生效，所以将token保存在sessionStorage中
-        console.log(res)
+        console.log('登录接口返回值:', res)
         window.sessionStorage.setItem('token', res.data.token)
         console.log('token：' + window.sessionStorage.getItem('token'))
         // 通过编程式导航跳转到后台主页，路由地址是 /home
