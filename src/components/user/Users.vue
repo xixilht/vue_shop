@@ -23,9 +23,9 @@
 
       <!-- 用户列表区域 -->
       <el-table :data="userlist" border stripe>
+        <!-- type="index" 后台并没有返回index字段，这是索引 -->
+        <!-- 作用：设置 type 属性为 index，即可显示从 1 开始的索引号。-->
         <el-table-column label="序号" type="index"></el-table-column>
-        <!-- 后台没有返回index字段,这是索引,注释:
-        设置type属性为index即可显示从 1 开始的索引号。-->
         <el-table-column label="姓名" prop="username"></el-table-column>
         <el-table-column label="邮箱" prop="email"></el-table-column>
         <el-table-column label="电话" prop="mobile"></el-table-column>
@@ -126,7 +126,7 @@ export default {
 
       if (regEmail.test(value)) {
         // 验证通过，合法的邮箱
-        // return 执行后不会执行 if 语句后的代码
+        // return 执行后，就不会向下继续执行了
         return cb()
       }
 
@@ -147,7 +147,7 @@ export default {
     }
 
     return {
-      // 获取用户列表的参数对象（根据接口文档写）
+      // 获取用户列表的参数对象（接口文档）
       queryInfo: {
         query: '',
         // 当前页码数
@@ -265,13 +265,11 @@ export default {
     },
     // 监听 pageSize 改变的事件
     handleSizeChange(newSize) {
-      // console.log('newSize：', newSize)
       this.queryInfo.pagesize = newSize
       this.getUserList()
     },
     // 监听 页码值 改变的事件
     handleCurrentChange(newPage) {
-      // console.log('newPage：', newPage)
       this.queryInfo.pagenum = newPage
       this.getUserList()
     },
@@ -299,7 +297,7 @@ export default {
       this.$refs.addFormRef.validate(async valid => {
         // 如果预效验失败，则直接 return，不走添加逻辑
         // eslint 语法不能只写 return
-        // if (!valid) return
+        // 写法：if (!valid) return 不行，eslint报错
         // 如果预效验通过，可以发起添加用户的网络请求
         if (valid) {
           const { data: res } = await this.$http.post('users', this.addForm)
@@ -357,7 +355,6 @@ export default {
     },
     // 根据id删除对应的用户信息
     async removeUserById(id) {
-      // console.log(id)
       // 弹窗询问用户是否删除数据
       const confirmResult = await this.$confirm(
         '此操作将永久删除该用户, 是否继续?',
@@ -368,16 +365,16 @@ export default {
           cancelButtonText: '取消',
           type: 'warning'
         }
-      ).catch(err => err) // 等于 ).catch(err => { return err })
+      ).catch(err => err) // 相当于 ).catch(err => { return err })
 
-      // 如果用户确认删除，则返回值为字符串 confirm
-      // 如果用户取消了删除，则返回值为字符串 cancel
-      // console.log(confirmResult)
+      /*
+      如果用户确认删除，则返回值为字符串 confirm
+      如果用户取消了删除，则返回值为字符串 cancel
+      */
       if (confirmResult !== 'confirm') {
         return this.$message.info('已取消删除')
       }
 
-      // console.log('确认了删除')
       const { data: res } = await this.$http.delete('users/' + id)
 
       if (res.meta.status !== 200) {

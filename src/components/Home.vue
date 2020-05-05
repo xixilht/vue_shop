@@ -8,12 +8,16 @@
       </div>
       <el-button type="info" @click="logout">退出</el-button>
     </el-header>
+
     <!-- 页面主体 -->
     <el-container>
+
       <!-- 侧边栏 -->
       <el-aside :width="isCollapse ? '64px' : '200px'">
+
         <!-- 折叠菜单栏 -->
         <div class="toggle-button" @click="toggleCollapse">|||</div>
+
         <!-- 侧边栏菜单效果 -->
         <el-menu
           background-color="#333744"
@@ -26,7 +30,7 @@
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
-          <!-- 每一个 v-for 都尽量提供一个唯一的 key 属性，如果返回的 item 里有 id，key的值 尽量用 id -->
+          <!-- 提示：每一个 v-for 都尽量提供一个唯一的 key 属性，如果返回的 item 里有 id，key的值 尽量用 id -->
           <el-submenu :index="item.id + ''" v-for="item in menulist" :key="item.id">
             <!-- 一级菜单的模板区域 -->
             <template slot="title">
@@ -53,19 +57,21 @@
           </el-submenu>
         </el-menu>
       </el-aside>
+
       <!-- 右侧内容主体 -->
       <el-main>
         <!-- 路由占位符 -->
         <router-view></router-view>
       </el-main>
+
     </el-container>
   </el-container>
 </template>
 
 <script>
 export default {
+  // data 组件的资源数据，可立即渲染数据到页面
   data() {
-    // 组件的资源数据，可立即渲染数据到页面
     return {
       // 左侧菜单数据
       menulist: [],
@@ -97,7 +103,6 @@ export default {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
       this.menulist = res.data
-      console.log(res)
     },
     // 点击按钮，切换菜单的折叠与展开
     toggleCollapse() {
@@ -106,7 +111,6 @@ export default {
     // 保存链接的激活状态
     saveNavState(activePath) {
       window.sessionStorage.setItem('activePath', activePath)
-      // this.activePath = window.sessionStorage.getItem('activePath')
       this.activePath = activePath
       console.log('activePath：', activePath)
     }
