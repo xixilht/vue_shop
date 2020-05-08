@@ -11,10 +11,8 @@
 
     <!-- 页面主体 -->
     <el-container>
-
       <!-- 侧边栏 -->
       <el-aside :width="isCollapse ? '64px' : '200px'">
-
         <!-- 折叠菜单栏 -->
         <div class="toggle-button" @click="toggleCollapse">|||</div>
 
@@ -63,7 +61,6 @@
         <!-- 路由占位符 -->
         <router-view></router-view>
       </el-main>
-
     </el-container>
   </el-container>
 </template>

@@ -1,8 +1,6 @@
 <template>
   <div class="login_container">
-
     <div class="login_box">
-
       <!-- 头像区域 -->
       <div class="avatar_box">
         <img src="../assets/logo.png" />
@@ -32,16 +30,15 @@
           <el-button type="primary" @click="login">登录</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
         </el-form-item>
-
       </el-form>
     </div>
-
   </div>
 </template>
 
 <script>
 export default {
-  data() { // data 双向数据绑定
+  data() {
+    // data 双向数据绑定
     return {
       // 登录表单的数据绑定对象
       loginForm: {
