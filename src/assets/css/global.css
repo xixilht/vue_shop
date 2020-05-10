@@ -26,6 +26,18 @@ body,
     margin-top: 15px;
 }
 
+/* 限制级联选择器的高度 */
 .el-cascader-panel {
     height: 200px;
+}
+
+/* 去掉级联选择器的单选按钮 */
+.el-cascader-panel .el-radio {
+    display: none
+}
+
+.el-cascader-node:not(.is-disabled):focus,
+.el-cascader-node:not(.is-disabled):hover {
+    font-weight: 700;
+    color: #409EFF;
 }

@@ -81,9 +81,10 @@
         </el-form-item>
         <el-form-item label="父级分类：">
           <!--
+            级联选择器 属性和事件
             v-model 选中项绑定值，PS：必须是数组
             options 用来指定数据源
-            props 用来指定配置对象
+            props 用来指定配置级联选择器的对象
             change 当选中节点变化时触发
             ref 引用
             expand-change 当展开节点发生变化时触发
@@ -184,11 +185,11 @@ export default {
       cascaderProps: {
         // 次级菜单的展开方式 可选值：click / hover
         expandTrigger: 'hover',
-        // 是否严格的遵守父子节点不互相关联，设为 true可选择一级选项
+        // 是否严格的遵守父子节点不互相关联，设为 true可选择子级选项
         checkStrictly: true,
-        value: 'cat_id',
-        label: 'cat_name',
-        children: 'children'
+        value: 'cat_id', // 级联选择器中,选项的id值,后面需提交
+        label: 'cat_name', // 级联选择器中,显示选项的文本值
+        children: 'children' // 级联选择器,父子节点的嵌套属性
       },
       // 选中的父级分类的Id数组
       selectedKeys: []
@@ -199,7 +200,7 @@ export default {
     this.getCateList()
   },
   methods: {
-    // 获取商品分类数据
+    // 获取商品分类数据(请求分级数的数据，接口返回的data才有result字段)
     async getCateList() {
       const { data: res } = await this.$http.get('categories', { params: this.queryInfo })
 
