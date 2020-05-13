@@ -285,11 +285,6 @@ export default {
       // 把数据列表，赋值给 catelist
       this.catelist = res.data
     },
-    // 级联选择器选中项发生变化时,会触发这个函数
-    handleChange() {
-      // 获取参数的列表数据-下方表格中的数据
-      this.getParamsData()
-    },
     // 解决 新版Element-UI,级联选择器bug：点击圆圈后是自动收起下拉；点击文字label同样实现效果
     cascaderClick() {
       const that = this
@@ -306,6 +301,11 @@ export default {
           }
         })
       }, 100)
+    },
+    // 级联选择器选中项发生变化时,会触发这个函数
+    handleChange() {
+      // 获取参数的列表数据-下方表格中的数据
+      this.getParamsData()
     },
     // tab 标签页的 页签点击事件的处理函数
     handleTabClick() {

@@ -298,18 +298,26 @@ export default {
       const { data: res } = await this.$http.get('users', {
         params: this.queryInfo
       })
+
       if (res.meta.status !== 200) {
         return this.$message.error('获取用户列表失败')
       }
+
       this.userlist = res.data.users
       this.total = res.data.total
     },
-    // 监听 pageSize 改变的事件
+    /**
+     * size-change：监听 pageSize 改变的事件
+     * @param {number} newSize 每页条数(最新) - 回调函数
+     */
     handleSizeChange(newSize) {
       this.queryInfo.pagesize = newSize
       this.getUserList()
     },
-    // 监听 页码值 改变的事件
+    /**
+     * current-change：监听 页码值 改变的事件
+     * @param {number} newPage 当前页 - 回调函数
+     */
     handleCurrentChange(newPage) {
       this.queryInfo.pagenum = newPage
       this.getUserList()

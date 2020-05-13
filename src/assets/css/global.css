@@ -41,3 +41,21 @@ body,
     font-weight: 700;
     color: #409EFF;
 }
+
+/* 步骤条 */
+.el-steps {
+    margin: 10px 0;
+}
+
+.el-step__title {
+    font-size: 13px;
+}
+
+/* .el-form--label-top .el-form-item__label */
+.form-item-label label {
+    padding-bottom: 0px !important;
+}
+
+.ql-editor {
+    min-height: 300px;
+}
