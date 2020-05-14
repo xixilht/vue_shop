@@ -126,7 +126,7 @@ export default {
   data() {
     return {
       // Tab 属性：绑定值，选中选项卡的 name
-      activeIndex: '4',
+      activeIndex: '0',
       // 添加商品的表单数据对象
       addForm: {
         goods_name: '',
@@ -264,7 +264,7 @@ export default {
         })
 
         if (res.meta.status !== 200) {
-          return this.$message.error('获取动态参数列表失败！')
+          return this.$message.error('获取商品的动态参数列表失败！')
         }
 
         // 把字符串转换成数组
@@ -287,11 +287,6 @@ export default {
         this.onlyTableData = res.data
       }
     },
-    // 处理图片预览效果
-    handlePreview(file) {
-      this.previewPath = file.response.data.url
-      this.previewVisible = true
-    },
     /** 处理移除图片的操作
      * @param {obj} file 将要移除的图片的信息对象
      */
@@ -312,11 +307,16 @@ export default {
       // 将图片信息对象，push 到 pics 数组中
       this.addForm.pics.push(picInfo)
     },
+    // 处理图片预览效果
+    handlePreview(file) {
+      this.previewPath = file.response.data.url
+      this.previewVisible = true
+    },
     // 添加商品
     add() {
       this.$refs.addFormRef.validate(async valid => {
         if (!valid) {
-          return this.$message.error('请填写必要的表单项,若表单项是数字,则不能为0！')
+          return this.$message.error('请填写必要的表单项,如果表单项要求是数字格式,则不能为0！')
         }
 
         // 执行添加的业务逻辑
@@ -355,7 +355,7 @@ export default {
       if (this.addForm.goods_cat.length === 3) {
         return this.addForm.goods_cat[2]
       }
-      return 6
+      return null
     }
   }
 }
