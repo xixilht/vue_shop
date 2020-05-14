@@ -59,3 +59,17 @@ body,
 .ql-editor {
     min-height: 300px;
 }
+
+.el-timeline .el-card .el-card__body {
+    padding: 10px;
+    line-height: 1.8;
+}
+
+.el-timeline .el-card .el-card__body p {
+    margin: 0px;
+    line-height: 1.8
+}
+
+.el-dialog .el-dialog__body {
+    padding-top: 10px;
+}

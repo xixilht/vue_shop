@@ -25,7 +25,7 @@
       <el-table :data="userlist" border stripe>
         <!-- type="index" 后台并没有返回index字段，这是索引 -->
         <!-- 作用：设置 type 属性为 index，即可显示从 1 开始的索引号。-->
-        <el-table-column label="序号" type="index"></el-table-column>
+        <el-table-column type="index"></el-table-column>
         <el-table-column label="姓名" prop="username"></el-table-column>
         <el-table-column label="邮箱" prop="email"></el-table-column>
         <el-table-column label="电话" prop="mobile"></el-table-column>

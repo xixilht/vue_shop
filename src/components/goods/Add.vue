@@ -219,7 +219,8 @@ export default {
 
       this.catelist = res.data
     },
-    // 级联选择器：当展开节点发生变化时触发
+    /* 级联选择器：当展开节点发生变化时触发
+    解决bug：点击圆圈后是自动收起下拉；点击文字label同样实现效果 */
     cascaderClick() {
       const that = this
       setTimeout(function() {
@@ -326,7 +327,10 @@ export default {
 
         // 处理商品动态参数
         this.manyTableData.forEach(item => {
-          const newInfo = { attr_id: item.attr_id, attr_value: item.attr_vals.join(' ') }
+          const newInfo = {
+            attr_id: item.attr_id,
+            attr_value: item.attr_vals.join(' ')
+          }
           this.addForm.attrs.push(newInfo)
         })
 

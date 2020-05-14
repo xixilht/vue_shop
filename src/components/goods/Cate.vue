@@ -256,7 +256,8 @@ export default {
         this.addCateForm.cat_level = 0
       }
     },
-    // 解决bug：点击圆圈后是自动收起下拉；点击文字label同样实现效果
+    /* 级联选择器：当展开节点发生变化时触发
+    解决bug：点击圆圈后是自动收起下拉；点击文字label同样实现效果 */
     cascaderClick() {
       const that = this
       setTimeout(function() {
