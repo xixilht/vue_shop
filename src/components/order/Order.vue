@@ -147,6 +147,8 @@ export default {
           }
         ]
       },
+      /* 中国省市区县数据绑定，ES6：key 值和 value值 变量名一样，可只写一个变量名
+      如：cityData : cityData 可写成一个 cityData 绑定数据对象 */
       cityData,
       // 级联选择器的配置对象
       addressProps: {
@@ -154,6 +156,7 @@ export default {
         checkStrictly: false
       },
       progressVisible: false,
+      // timeline 时间线组件数据源，物流信息数据
       progressInfo: []
     }
   },
