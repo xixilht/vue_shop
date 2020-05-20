@@ -401,13 +401,10 @@ export default {
       this.$refs.editFormRef.validate(async valid => {
         if (!valid) return
 
-        const { data: res } = await this.$http.put(
-          `categories/${this.cateId}/attributes/${this.editForm.attr_id}`,
-          {
-            attr_name: this.editForm.attr_name,
-            attr_sel: this.activeName
-          }
-        )
+        const { data: res } = await this.$http.put(`categories/${this.cateId}/attributes/${this.editForm.attr_id}`, {
+          attr_name: this.editForm.attr_name,
+          attr_sel: this.activeName
+        })
 
         if (res.meta.status !== 200) {
           return this.$message.error('修改参数失败!')
@@ -432,9 +429,7 @@ export default {
       }
 
       // 删除的业务逻辑
-      const { data: res } = await this.$http.delete(
-        `categories/${this.cateId}/attributes/${attrId}`
-      )
+      const { data: res } = await this.$http.delete(`categories/${this.cateId}/attributes/${attrId}`)
 
       if (res.meta.status !== 200) {
         return this.$message.error('删除参数失败!')
@@ -472,14 +467,11 @@ export default {
     // 将对 attr_vals 的操作，保存到数据库
     async savaAttrVals(row) {
       // 需要发起请求，保存这次操作
-      const { data: res } = await this.$http.put(
-        `categories/${this.cateId}/attributes/${row.attr_id}`,
-        {
-          attr_name: row.attr_name,
-          attr_sel: row.attr_sel,
-          attr_vals: row.attr_vals.join(' ')
-        }
-      )
+      const { data: res } = await this.$http.put(`categories/${this.cateId}/attributes/${row.attr_id}`, {
+        attr_name: row.attr_name,
+        attr_sel: row.attr_sel,
+        attr_vals: row.attr_vals.join(' ')
+      })
 
       if (res.meta.status !== 200) {
         return this.$message.error('修改参数项失败！')

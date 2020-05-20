@@ -54,7 +54,7 @@
                   <el-col :span="18">
                     <el-tag
                       type="warning"
-                      v-for="(item3) in item2.children"
+                      v-for="item3 in item2.children"
                       :key="item3.id"
                       closable
                       @close="removeRightById(scope.row, item3.id, item3.authName)"
@@ -153,15 +153,11 @@ export default {
     // 根据Id删除对应的权限
     async removeRightById(role, rightId, authName) {
       // 弹框提示用户是否要删除
-      const confirmResult = await this.$confirm(
-        `确定要删除用户 “${role.roleName}” 的 “${authName}” 权限吗？`,
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).catch(err => err)
+      const confirmResult = await this.$confirm(`确定要删除用户 “${role.roleName}” 的 “${authName}” 权限吗？`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err)
 
       if (confirmResult !== 'confirm') {
         return this.$message.info('取消了删除！')
@@ -213,10 +209,7 @@ export default {
     // 点击为角色分配权限
     async allotRights() {
       // 获取所有选中和半选中状态下的key值，合并成一个新数组
-      const keys = [
-        ...this.$refs.treeRef.getCheckedKeys(),
-        ...this.$refs.treeRef.getHalfCheckedKeys()
-      ]
+      const keys = [...this.$refs.treeRef.getCheckedKeys(), ...this.$refs.treeRef.getHalfCheckedKeys()]
 
       // 根据接口要求，把id数组转换成以英文逗号拼接的字符串
       const idStr = keys.join(',')
