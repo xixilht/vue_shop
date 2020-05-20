@@ -1,5 +1,10 @@
 # vue_shop
 
+## Project img
+![image](https://github.com/xixilht/vue_shop/blob/master/public/vue_shop_pro_img/01goods-list.jpg)
+![image](https://github.com/xixilht/vue_shop/blob/master/public/vue_shop_pro_img/02add-good.jpg)
+![image](https://github.com/xixilht/vue_shop/blob/master/public/vue_shop_pro_img/03data-table.jpg)
+
 ## Project setup
 ```
 npm install
